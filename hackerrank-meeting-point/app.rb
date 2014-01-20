@@ -9,7 +9,7 @@ class MeetingPoint
     map.each do |p1|
       p1.distance = 0
       map.each do |p2|
-        p1.distance = p1.distance + get_distance(p1, p2)  
+        p1.distance += get_distance(p1, p2)  
       end
     end
     

@@ -29,9 +29,9 @@ describe MeetingPoint do
       expect(result).to eq(8)
     end
 
-    it 'second case' do
-      points = [Point.new(12,-14), Point.new(-3,3), Point.new(-14,7), Point.new(-14,-3), Point.new(2,-12), Point.new(-1,-6)]
-      result = @mp.evaluate(points)  
-      expect(result).to eq(54)
-    end
+    # it 'second case' do
+    #   points = [Point.new(12,-14), Point.new(-3,3), Point.new(-14,7), Point.new(-14,-3), Point.new(2,-12), Point.new(-1,-6)]
+    #   result = @mp.evaluate(points)  
+    #   expect(result).to eq(54)
+    # end
 end
