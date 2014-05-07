@@ -1,46 +1,41 @@
 class BerlinClock
+  SECONDS  = "Y"
+  HOURS_FIVES = "RRRR"
+  HOURS_ONES = "RRRR"
+  MINUTES_FIVES = "YYRYYRYYRYY"
+  MINUTES_ONES = "YYYY"
+
   def initialize(h,m,s)
-    @h = h
-    @m = m
-    @s = s
+    @h, @m, @s = h, m, s
   end
 
-  def seconds_blinker
-    if @s % 2 != 0
-      "O" 
-    else
-      "Y"
-    end
+  def seconds
+    format(SECONDS, @s + 1, :%, 2)
   end
 
-  def format(part, op, lamp_color="R", lamp_number=4)
-    (lamp_color * (part.public_send(op, 5))).ljust(lamp_number, 'O') 
+  def format(line, part, op, mod=5)
+    on_count = part.public_send(op, mod)
+    line[0, on_count] + "O" * (line.length - on_count)
   end
 
   def hours_fives
-    format(@h, :/)
+    format(HOURS_FIVES, @h, :/)
   end
 
   def hours_ones
-    format(@h, :%)
+    format(HOURS_ONES, @h, :%)
   end
 
   def minutes_ones
-    format(@m, :%, "Y")
+    format(MINUTES_ONES, @m, :%)
   end
 
   def minutes_fives
-    quartes = [2,5,8]
-    minutes = format(@m, :/, "Y", 11)  
-    quartes.each do |q|
-      minutes[q] = "R" if minutes[q] == "Y"
-    end
-    
-    minutes
+    format(MINUTES_FIVES, @m, :/)  
   end
 
   def to_s
-    "#{seconds_blinker}\n#{hours_fives}\n#{hours_ones}\n#{minutes_fives}\n#{minutes_ones}"
+    "#{seconds}\n#{hours_fives}\n#{hours_ones}\n#{minutes_fives}\n#{minutes_ones}"
   end 
 end
 
