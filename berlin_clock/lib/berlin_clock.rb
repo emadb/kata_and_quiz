@@ -15,7 +15,8 @@ class BerlinClock
 
   def format(line, part, op, mod=5)
     on_count = part.public_send(op, mod)
-    line[0, on_count] + "O" * (line.length - on_count)
+    off_count = line.length - on_count
+    line[0, on_count] + "O" * off_count
   end
 
   def hours_fives
