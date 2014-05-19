@@ -1,42 +1,45 @@
-class RockScissorsPaper
-  def play(p1, p2)
-    if p1.against(p2) == p1
-      'player 1'
-    else
-      'player 2'
-    end
-  end
-end
+PLAYER_1 = 'Player 1'
+PLAYER_2 = 'Player 2'
+DRAW = 'Draw'
 
 class Rock
-  def against(other)
-    if other.class == Scissors
-      self
-    else
-      other
-    end
+  def against_scissors
+    PLAYER_1
+  end
+
+  def against_paper
+    PLAYER_2
+  end
+
+  def against_rock
+    DRAW
   end
 end
 
 class Scissors
-  def against(other)
-    if other.class == Paper
-      self
-    else
-      other
-    end
+  def against_rock
+    PLAYER_2
+  end
+  def against_paper
+    PLAYER_1
+  end
+  def against_scissors
+    DRAW
   end
 end
 
 class Paper
-  def against(other)
-    if other.class == Rock
-      self
-    else
-      other
-    end
+  def against_rock
+    PLAYER_1
   end
 
+  def against_scissors
+    PLAYER_2
+  end
+
+  def against_paper
+    DRAW
+  end
 end
 
 
