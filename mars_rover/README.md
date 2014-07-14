@@ -1,8 +1,8 @@
-==Mars rover kata==
+##Mars rover kata##
 
-Original posting: http://dallashackclub.com/rover
+Original posting: [http://dallashackclub.com/rover](http://dallashackclub.com/rover)
 
-Additional information: http://amirrajan.net/Blog/code-katas-mars-rover
+Additional information: [http://amirrajan.net/Blog/code-katas-mars-rover](http://amirrajan.net/Blog/code-katas-mars-rover)
 
 - Develop an api that moves a rover around on a grid.
 - You are given the initial starting point (x,y) of a rover and the direction (N,S,E,W) it is facing.

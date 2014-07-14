@@ -1,7 +1,7 @@
 class MarsRover
   def initialize(x, y, direction)
     @position = Position.new(x, y)
-    @direction = direction
+    @rotator = Rotator.new(direction)
   end
 
   def position
@@ -9,16 +9,17 @@ class MarsRover
   end
 
   def direction
-    @direction
+    @rotator.direction
   end
 
   def send_commands(commands)
     commands.each do |c|
-      if @direction == 'N' 
+      if @rotator.direction == 'N' 
         @position.decrease_y if c == 'f'
         @position.increase_y if c == 'b'  
-        @direction = 'W' if c == 'l'
-        @direction = 'E' if c == 'r'
+        
+        @rotator.left if c == 'l'
+        @rotator.right if c == 'r'
       end
     end
   end
