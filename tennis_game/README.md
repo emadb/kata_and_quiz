@@ -8,9 +8,9 @@ For the first iteration we would like to develop the actual scoring algorithm th
 
 ####Winning Points Increases Score
 
-As a Tennis game designer
-I want the score to increase when a player wins a point
-So that I can display the current score correctly 
+As a Tennis game designer  
+I want the score to increase when a player wins a point  
+So that I can display the current score correctly  
 
 - When player one wins one point, the score is 'fifteen-love'.
 - When player one wins one point and player two wins one point, the score is 'fifteen-all'.
@@ -19,9 +19,9 @@ So that I can display the current score correctly
 
 ####Deuce and Advantage are Scored Correctly
 
-As a Tennis game designer
-I want 'deuce' and 'advantage' to be handled automatically
-So that I can correctly account for ties 
+As a Tennis game designer  
+I want 'deuce' and 'advantage' to be handled automatically  
+So that I can correctly account for ties   
 
 - When player one wins three points and player two wins three points, the score is 'deuce'.
 - When player one wins five points and player two wins five points, the score is 'deuce'.
@@ -30,9 +30,9 @@ So that I can correctly account for ties
 
 ####Player Can Win a Match
 
-As a Tennis game designer
-I want a player to be able to win
-So that I can show the winner at the end 
+As a Tennis game designer  
+I want a player to be able to win  
+So that I can show the winner at the end   
 
 - When player one wins four points, the score is 'player one wins'
 - When player one wins five points and player two wins three points, the score is 'player one wins'.
