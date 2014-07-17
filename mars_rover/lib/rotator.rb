@@ -7,10 +7,10 @@ class D_A
   end
 end
 
-N = D_A.new('N', Math::PI/2)
 E = D_A.new('E', 0)
-S = D_A.new('S', Math::PI)
-W = D_A.new('W', Math::PI*3/2)
+N = D_A.new('N', Math::PI/2)
+W = D_A.new('W', Math::PI)
+S = D_A.new('S', Math::PI*3/2)
 
 DirectionHash = {'N' => N, 'E' => E, 'S' => S, 'W' => W}
 
@@ -44,3 +44,5 @@ class Rotator
     end
   end
 end
+
+
