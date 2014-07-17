@@ -1,16 +1,9 @@
-class D_A
-  attr_reader :dir, :angle
+DirectionAndAngle = Struct.new(:dir, :angle)
 
-  def initialize(direction, angle)
-    @dir = direction
-    @angle = angle
-  end
-end
-
-E = D_A.new('E', 0)
-N = D_A.new('N', Math::PI/2)
-W = D_A.new('W', Math::PI)
-S = D_A.new('S', Math::PI*3/2)
+E = DirectionAndAngle.new('E', 0)
+N = DirectionAndAngle.new('N', Math::PI/2)
+W = DirectionAndAngle.new('W', Math::PI)
+S = DirectionAndAngle.new('S', Math::PI*3/2)
 
 DirectionHash = {'N' => N, 'E' => E, 'S' => S, 'W' => W}
 
