@@ -1,3 +1,7 @@
+class ZeroZero
+
+end
+
 class Game
 
   def initialize
