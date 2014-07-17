@@ -9,7 +9,8 @@ class Game
       '2-3' => 'thirty-forty',
       '0-3' => 'love-forty',
       '3-3' => 'deuce',
-      '4-3' => 'advantage player one'
+      '4-3' => 'advantage player one',
+      '4-5' => 'advantage player two',
     }
 
   end
