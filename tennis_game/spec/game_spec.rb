@@ -52,4 +52,24 @@ describe Game do
     
   end
 
+  context 'Player Can Win a Match' do
+    it "When player one wins four points, the score is 'player one wins'" do
+      @game.score_player_1(4)
+      @game.score_player_2(0)
+      expect(@game.score).to eq('player one wins')
+    end
+
+    it "When player one wins five points and player two wins three points, the score is 'player one wins'" do
+       @game.score_player_1(5)
+      @game.score_player_2(3)
+      expect(@game.score).to eq('player one wins')
+    end
+
+    it "When player one wins six points and player two wins eight points, the score is 'player two wins'" do
+      @game.score_player_1(6)
+      @game.score_player_2(8)
+      expect(@game.score).to eq('player two wins')
+    end
+  end
+
 end

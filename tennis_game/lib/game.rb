@@ -11,6 +11,9 @@ class Game
       '3-3' => 'deuce',
       '4-3' => 'advantage player one',
       '4-5' => 'advantage player two',
+      '4-0' => 'player one wins',
+      '5-3' => 'player one wins',
+      '6-8' => 'player two wins'
     }
 
   end
