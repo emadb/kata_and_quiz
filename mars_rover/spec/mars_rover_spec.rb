@@ -42,4 +42,11 @@ describe MarsRover do
     @rover.send_commands(['r'])
     expect(@rover.direction).to eq('E')
   end
+
+  it 'move around' do
+    @rover.send_commands(['f', 'f', 'r', 'f', 'f', 'f', 'b', 'f', 'l','f','l', 'f', 'f'])
+    expect(@rover.x).to eq(5)
+    expect(@rover.y).to eq(8)
+  end
+
 end
