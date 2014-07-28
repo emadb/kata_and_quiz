@@ -37,17 +37,13 @@ describe Game do
       expect(@game.score).to eq('deuce')
     end
 
-    # it 'When player one wins four points and player two wins three points, the score is advantage player one. ' do
-    #   @game.win_player_1
-    #   @game.win_player_1
-    #   @game.win_player_1
-    #   @game.win_player_1
-    #   @game.win_player_2
-    #   @game.win_player_2
-    #   @game.win_player_2
-    #   expect(@game.score).to eq('advantage player one')
-    # end
+    it 'When player one wins four points and player two wins three points, the score is advantage player one. ' do
+      @game.score_player_1(4)
+      @game.score_player_2(3)
+      expect(@game.score).to eq('advantage player one')
+    end
 
+    # it is a state machine??
     
   end
 

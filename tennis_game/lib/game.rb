@@ -16,12 +16,19 @@ class Game
   def score
     p1 = @scores[@players[0]]
     p2 = @scores[@players[1]]
+    
     if p1 == p2 && p1 == 'forty'
       return 'deuce'
     end
+    
+    if @players[0] == 4 && @players[1] == 3
+      return 'advantage player one'
+    end
+    
     if p1 == p2
       return "#{p1}-all"
     end
+    
     "#{p1}-#{p2}"
   end
 end
