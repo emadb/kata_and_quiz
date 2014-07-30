@@ -26,3 +26,4 @@ icon.png
 *.ncrunchsolution
 UpgradeLog*.*
 _UpgradeReport_Files
+_build
