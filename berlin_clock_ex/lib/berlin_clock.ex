@@ -15,15 +15,13 @@ defmodule BerlinClock do
 
 	def get_single_minutes(m) do
 		number_of_y = rem(m, 5)
-
 		String.ljust(String.duplicate("Y", number_of_y), 4, ?O)
 	end
 
 	def get_seconds(s) do
-		if even?(s) do
-			"Y"
-		else
-			"O"
+		cond do
+			s |> even? -> "Y"
+			s |> odd?  -> "O"
 		end
 	end
 end
