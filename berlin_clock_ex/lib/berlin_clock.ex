@@ -10,8 +10,20 @@ defmodule BerlinClock do
 		seconds = get_seconds(s)
 		single_minutes = get_single_minutes(m)
 		fives_minutes = get_fives_minutes(m)
+		single_hours = get_single_hours(h)
+		fives_hours = get_fives_hours(h)
 
-		[seconds, "", "", fives_minutes, single_minutes]
+		[seconds, fives_hours, single_hours, fives_minutes, single_minutes]
+	end
+
+	def get_fives_hours(h) do
+		number_of_r = div(h, 5)
+		String.ljust(String.duplicate("R", number_of_r), 4, ?O)
+	end
+
+	def get_single_hours(h) do
+		number_of_r = rem(h, 5)
+		String.ljust(String.duplicate("R", number_of_r), 4, ?O)
 	end
 
 	def get_fives_minutes(m) do

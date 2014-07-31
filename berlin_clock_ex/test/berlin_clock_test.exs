@@ -40,7 +40,34 @@ defmodule BerlinClockTest do
     [_,_,_,m,_] = BerlinClock.parse("00:55:00")
     assert m == "YYRYYRYYRYY"
   end
-  
 
+  test "When it is 1 hour past, ROOO is returned" do
+    [_,_,h,_,_] = BerlinClock.parse("01:00:00")
+    assert h == "ROOO"
+  end
 
+  test "When it is 2 hours past, RROO is returned" do
+    [_,_,h,_,_] = BerlinClock.parse("02:00:00")
+    assert h == "RROO"
+  end  
+
+  test "When it is 5 hours past, OOOO is returned." do
+    [_,_,h,_,_] = BerlinClock.parse("05:00:00")
+    assert h == "OOOO"
+  end  
+
+  test "At 5 hours past, ROOO is returned" do
+    [_,h,_,_,_] = BerlinClock.parse("05:00:00")
+    assert h == "ROOO"
+  end    
+
+  test "At 15 hours past, RRRO is returned. " do
+    [_,h,_,_,_] = BerlinClock.parse("15:00:00")
+    assert h == "RRRO"
+  end    
+
+  test "At 23 hour past, RRRR is returned." do
+    [_,h,_,_,_] = BerlinClock.parse("23:00:00")
+    assert h == "RRRR"
+  end    
 end
