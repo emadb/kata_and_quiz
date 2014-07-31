@@ -16,7 +16,24 @@ defmodule BerlinClock do
 
 	def get_fives_minutes(m) do
 		number_of_y = div(m, 5)
-		String.ljust(String.duplicate("Y", number_of_y), 11, ?O)
+		String.ljust(create_fives_minutes(number_of_y), 11, ?O)
+	end
+
+	def create_fives_minutes(1) do
+		"Y"
+	end
+
+	def create_fives_minutes(n) when n < 1 do
+		""
+	end
+
+	def create_fives_minutes(n) when n > 1 do
+		if rem(n,3) == 0 do
+			light = "R"
+		else
+			light = "Y"
+		end
+		[create_fives_minutes(n-1), light ] |> Enum.join
 	end
 
 	def get_single_minutes(m) do

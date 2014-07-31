@@ -26,10 +26,21 @@ defmodule BerlinClockTest do
     assert sm == "OOOO"
   end
 
-    test "At 5 past the hour, YOOOOOOOOOO is returned." do
+  test "At 5 past the hour, YOOOOOOOOOO is returned." do
     [_,_,_,m,_] = BerlinClock.parse("00:05:00")
     assert m == "YOOOOOOOOOO"
   end
+
+  test "At 15 past the hour, YYROOOOOOOO is returned." do
+    [_,_,_,m,_] = BerlinClock.parse("00:15:00")
+    assert m == "YYROOOOOOOO"
+  end
+
+  test "At 55 past the hour, YYRYYRYYRYY is returned." do
+    [_,_,_,m,_] = BerlinClock.parse("00:55:00")
+    assert m == "YYRYYRYYRYY"
+  end
+  
 
 
 end
