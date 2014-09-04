@@ -4,7 +4,7 @@ var should = require("should")
 
 describe("MarsRover", function() {
   describe("move forward", function() {
-    it("to north", function() {
+    it("faced north", function() {
       this.marsRover = new MarsRover(10,5, 'N');
       this.marsRover.moveForward();
 
@@ -13,7 +13,7 @@ describe("MarsRover", function() {
       pos.y.should.equal(6);
     });
 
-    it("move forward to south", function() {      
+    it("faced south", function() {      
       this.marsRover = new MarsRover(10,5, 'S');
       this.marsRover.moveForward();
 
@@ -22,7 +22,7 @@ describe("MarsRover", function() {
       pos.y.should.equal(4);
     });
 
-    it("move forward to east", function() {
+    it("faced east", function() {
       this.marsRover = new MarsRover(10,5, 'E');
       this.marsRover.moveForward();
 
@@ -31,7 +31,7 @@ describe("MarsRover", function() {
       pos.y.should.equal(5);
     });
 
-    it("move forward to west", function() {
+    it("faced west", function() {
       this.marsRover = new MarsRover(10,5, 'W');
       this.marsRover.moveForward();
 
@@ -42,7 +42,7 @@ describe("MarsRover", function() {
   });
 
   describe("move backward", function() {
-    it("move backward to north", function() {
+    it("faced north", function() {
       this.marsRover = new MarsRover(10,5, 'N');
       this.marsRover.moveBackward();
 
@@ -51,7 +51,7 @@ describe("MarsRover", function() {
       pos.y.should.equal(4);
     });
 
-    it("move backward to south", function() {
+    it("faced south", function() {
       this.marsRover = new MarsRover(10,5, 'S');
       this.marsRover.moveBackward();
 
@@ -60,7 +60,7 @@ describe("MarsRover", function() {
       pos.y.should.equal(6);
     });
 
-    it("move backward to east", function() {
+    it("faced east", function() {
       this.marsRover = new MarsRover(10,5, 'E');
       this.marsRover.moveBackward();
 
@@ -69,7 +69,7 @@ describe("MarsRover", function() {
       pos.y.should.equal(5);
     });
 
-    it("move backward to west", function() {
+    it("faced west", function() {
       this.marsRover = new MarsRover(10,5, 'W');
       this.marsRover.moveBackward();
 
@@ -78,4 +78,38 @@ describe("MarsRover", function() {
       pos.y.should.equal(5);
     });
   });    
+
+  describe("turn left", function() {
+    it("faced north, should face west", function() {
+      this.marsRover = new MarsRover(10,5, 'N');
+      this.marsRover.turnLeft();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('W');
+    });
+
+    it("faced west, should face south", function() {
+      this.marsRover = new MarsRover(10,5, 'W');
+      this.marsRover.turnLeft();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('S');
+    });
+
+    it("faced south, should face east", function() {
+      this.marsRover = new MarsRover(10,5, 'S');
+      this.marsRover.turnLeft();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('E');
+    });
+
+    it("faced east, should face north", function() {
+      this.marsRover = new MarsRover(10,5, 'E');
+      this.marsRover.turnLeft();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('N');
+    });
+  });
 });
