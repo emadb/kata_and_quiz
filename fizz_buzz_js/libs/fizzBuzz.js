@@ -18,16 +18,9 @@ module.exports = (function() {
 	};
 
 	FizzBuzz.prototype.process = function(n) {
-
-    var result = funs.map(function(f){
+    return funs.map(function(f){
       return f(n) || '';  
-    }).reduce(function(p, c){
-        return p + c;
-    });
-  
-    if (result == '')
-      return n;
-    return result;
+    }).join('') || n;
 	};
 
 	return FizzBuzz;
