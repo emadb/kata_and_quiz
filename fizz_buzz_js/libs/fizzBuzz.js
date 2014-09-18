@@ -23,6 +23,13 @@ module.exports = (function() {
     }).join('') || n;
 	};
 
+  FizzBuzz.prototype.oneTo100 = function(callback){
+    for (var i = 1; i <= 100; i++) {
+      var res = this.process(i);
+      callback(res);
+    } 
+  };
+
 	return FizzBuzz;
 
 })();

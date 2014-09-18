@@ -37,4 +37,12 @@ describe("FizzBuzz", function() {
 		var result = this.fizzBuzz.process(15);
 		result.should.eql('fizzbuzz');
 	});
+
+	it("zeroTo100 should process all numbers", function() {
+		var result = this.fizzBuzz.oneTo100(function(res){
+			console.log(res);
+		});
+		
+	});
+
 });
