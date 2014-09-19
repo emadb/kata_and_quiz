@@ -60,25 +60,25 @@ module.exports = (function() {
     
   };
 
-  MarsRover.prototype.turnLeft = function(){
-
+  MarsRover.prototype.turn = function(rol){
     var index = this.directions.indexOf(this.direction);
-    index = index - 1;
-    if (index == -1)
-      index = 3;
-    this.direction = this.directions[index];
-      
-  };
-
-
-  MarsRover.prototype.turnRight = function(){
-
-    var index = this.directions.indexOf(this.direction);
-    index = index + 1;
+    if (rol == 'R')
+      index = index + 1;
+    else
+      index = index - 1;
     if (index == 4)
       index = 0;
+     if (index == -1)
+      index = 3;
     this.direction = this.directions[index];
-      
+  }
+
+  MarsRover.prototype.turnLeft = function(){
+    this.turn('L');
+  };
+
+  MarsRover.prototype.turnRight = function(){
+   this.turn('R');
   };
 
   MarsRover.prototype.getPosition = function() {
