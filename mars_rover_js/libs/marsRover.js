@@ -66,6 +66,15 @@ module.exports = (function() {
     index = index - 1;
     if (index == -1)
       index = 3;
+    this.direction = this.directions[index];
+      
+  };
+
+
+  MarsRover.prototype.turnRight = function(){
+
+    var index = this.directions.indexOf(this.direction);
+    index = index + 1;
     if (index == 4)
       index = 0;
     this.direction = this.directions[index];

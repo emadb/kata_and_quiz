@@ -112,4 +112,38 @@ describe("MarsRover", function() {
       dir.should.equal('N');
     });
   });
+
+  describe("turn right", function() {
+    it("faced north, should face east", function() {
+      this.marsRover = new MarsRover(10,5, 'N');
+      this.marsRover.turnRight();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('E');
+    });
+
+    it("faced east, should face south", function() {
+      this.marsRover = new MarsRover(10,5, 'E');
+      this.marsRover.turnRight();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('S');
+    });
+
+    it("faced south, should face west", function() {
+      this.marsRover = new MarsRover(10,5, 'S');
+      this.marsRover.turnRight();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('W');
+    });
+
+    it("faced west, should face north", function() {
+      this.marsRover = new MarsRover(10,5, 'W');
+      this.marsRover.turnRight();
+
+      var dir = this.marsRover.getDirection();
+      dir.should.equal('N');
+    });
+  });
 });
