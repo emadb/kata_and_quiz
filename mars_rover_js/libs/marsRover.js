@@ -5,6 +5,8 @@ module.exports = (function() {
   var N, E, S, W;
   var directions;
 
+  var commands;
+
   var incy = function(p){
     p.y++;
   };
@@ -32,6 +34,13 @@ module.exports = (function() {
     this.pos.x = x;
     this.pos.y = y;
     this.direction = direction;
+
+    this.commands = {
+      'L': this.turnLeft,
+      'R': this.turnRight,
+      'F': this.moveForward,
+      'B': this.moveBackward
+    };
 	};
 
 	MarsRover.prototype.moveForward = function() {
@@ -75,6 +84,13 @@ module.exports = (function() {
 
   MarsRover.prototype.turnLeft = function(){
     this.turn('L');
+  };
+
+  MarsRover.prototype.process = function(cmds){
+    var _this = this;
+    cmds.forEach(function(cmd){
+      _this.commands[cmd].apply(_this);
+    });
   };
 
   MarsRover.prototype.turnRight = function(){

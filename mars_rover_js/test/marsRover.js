@@ -146,4 +146,23 @@ describe("MarsRover", function() {
       dir.should.equal('N');
     });
   });
+  describe("command stream", function() {
+    it("should rotate and move forward", function() {
+      this.marsRover = new MarsRover(10,5, 'N');
+      this.marsRover.process(['L','F']);
+
+      var pos = this.marsRover.getPosition();
+      pos.x.should.equal(9);
+      pos.y.should.equal(5);
+    });
+
+    it("should rotate move ", function() {
+      this.marsRover = new MarsRover(10,5, 'N');
+      this.marsRover.process(['L','L','F','F','R','B','B','B']);
+
+      var pos = this.marsRover.getPosition();
+      pos.x.should.equal(13);
+      pos.y.should.equal(3);
+    });
+  });
 });
