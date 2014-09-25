@@ -18,7 +18,7 @@ module.exports = (function() {
     var keys = _.without(Object.keys(this.basket), "");
 
     var currentTotal = _.reduce(keys, function(acc, k){
-      return acc + (self.basket[k] * self.applyRules(self.getRules(k)));
+      return acc + (self.applyRules(self.getRules(k)));
     }, 0);
 
     return currentTotal;          
@@ -38,18 +38,30 @@ module.exports = (function() {
 
   Checkout.prototype.applyRules = function(rules) {
       var self = this;
-      var orderedRules = _.sortBy(rules, function(r){
-        return -1 * r.quantity;
-      });
 
-      var rule = _.find(orderedRules, function(r){
-        return r.quantity <= self.basket[r.sku];
-      });
+      var rule = this.findRule(rules);
 
       self.basket[rule.sku] = self.basket[rule.sku] - rule.quantity;
 
+      if(self.basket[rule.sku] > 0)
+        return rule.price + this.applyRules(rules);
+
       return rule.price;
   };
+
+  Checkout.prototype.findRule = function(rules) {
+    var self = this;
+
+    var orderedRules = _.sortBy(rules, function(r){
+        return -1 * r.quantity;
+      });
+
+    return _.find(orderedRules, function(r){
+        return r.quantity <= self.basket[r.sku];
+      });
+  };
+
+
 
 	return Checkout;
 

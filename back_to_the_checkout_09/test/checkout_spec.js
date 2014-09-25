@@ -8,10 +8,12 @@ describe("Checkout", function() {
   beforeEach(function() {
     var pricingRules = [
       { sku: "A", price: 50, quantity: 1},
+      { sku: "A", price: 130, quantity: 3},
       { sku: "B", price: 30, quantity: 1},
+      { sku: "B", price: 45, quantity: 2},
       { sku: "C", price: 20, quantity: 1},
       { sku: "D", price: 15, quantity: 1},
-      { sku: "A", price: 130, quantity: 3},
+      
     ];
     checkout = new Checkout(pricingRules);
   }); 
@@ -53,5 +55,23 @@ describe("Checkout", function() {
     checkout.scan("A");
     checkout.scan("A");
     checkout.total().should.equal(130);
+  });
+
+  it("scan A, A, A, A should return 180", function() {
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.total().should.equal(180);
+  });
+
+
+  it("scan A, A, A, B, B should return 175", function() {
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("B");
+    checkout.scan("B");
+    checkout.total().should.equal(175);
   });
 });
