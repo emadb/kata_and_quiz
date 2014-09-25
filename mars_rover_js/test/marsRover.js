@@ -1,6 +1,6 @@
-var sinon = require("sinon")
+var sinon = require("sinon");
 var MarsRover = require("../libs/marsRover");
-var should = require("should")
+var should = require("should");
 
 describe("MarsRover", function() {
   describe("move forward", function() {

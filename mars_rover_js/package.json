@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "grunt": "latest",
-    "grunt-contrib-watch": "latest",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-contrib-jshint": "latest",
     "grunt-mocha-test": "latest",
     "should": "latest",

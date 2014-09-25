@@ -80,7 +80,7 @@ module.exports = (function() {
      if (index == -1)
       index = 3;
     this.direction = this.directions[index];
-  }
+  };
 
   MarsRover.prototype.turnLeft = function(){
     this.turn('L');
