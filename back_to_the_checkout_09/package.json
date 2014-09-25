@@ -1,0 +1,20 @@
+{
+  "name": "FizzBuzzKata",
+  "description": "Focus on TDD exercise by @emadb",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app",
+    "test": "mocha --reporter spec"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-jshint": "latest",
+    "grunt-mocha-test": "latest",
+    "should": "latest",
+    "sinon": "latest"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1"
+  }
+}
