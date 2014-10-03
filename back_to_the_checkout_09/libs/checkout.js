@@ -2,66 +2,54 @@ var _ = require('lodash');
 
 module.exports = (function() {
 
-  var pricingRules;
+  var _pricingRules;
+  var basket;
 
 	var Checkout = function(pricingRules) {
-    this.basket = {};
-    this.pricingRules = pricingRules;
+    basket = {};
+    _pricingRules = pricingRules;
 	};
 
 	Checkout.prototype.scan = function(sku) {
-    this.basket[sku] = this.basket[sku]+1 || 1;
+    basket[sku] = basket[sku]+1 || 1;
 	};
 
   Checkout.prototype.total = function() {
-    var self = this;
-    var keys = _.without(Object.keys(this.basket), "");
+    var keys = _.without(Object.keys(basket), "");
 
     var currentTotal = _.reduce(keys, function(acc, k){
-      return acc + (self.applyRules(self.getRules(k), self.findRule));
+      return acc + (applyRules(getRules(k), findRule));
     }, 0);
 
     return currentTotal;          
   };
-
-  Checkout.prototype.getPrice = function(sku) {
-    return _.filter(this.pricingRules, function(rule) {
-        return rule.sku === sku;
-      }).price;
-  };
    
-  Checkout.prototype.getRules = function(sku) {
-    return _.filter(this.pricingRules, function(rule) {
+  var getRules = function(sku) {
+    return _.filter(_pricingRules, function(rule) {
         return rule.sku === sku;
       });
   };
 
-  Checkout.prototype.applyRules = function(rules, findRuleFunction) {
-      var self = this;
-
+  var applyRules = function(rules, findRuleFunction) {
       var rule = findRuleFunction.apply(this, [rules]);
 
-      self.basket[rule.sku] = self.basket[rule.sku] - rule.quantity;
+      basket[rule.sku] = basket[rule.sku] - rule.quantity;
 
-      if(self.basket[rule.sku] > 0)
-        return rule.price + this.applyRules(rules, findRuleFunction);
+      if(basket[rule.sku] > 0)
+        return rule.price + applyRules(rules, findRuleFunction);
 
       return rule.price;
   };
 
-  Checkout.prototype.findRule = function(rules) {
-    var self = this;
-
+  var findRule = function(rules) {
     var orderedRules = _.sortBy(rules, function(r){
         return -1 * r.quantity;
       });
 
     return _.find(orderedRules, function(r){
-        return r.quantity <= self.basket[r.sku];
+        return r.quantity <= basket[r.sku];
       });
   };
-
-
 
 	return Checkout;
 

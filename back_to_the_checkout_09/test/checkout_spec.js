@@ -65,6 +65,32 @@ describe("Checkout", function() {
     checkout.total().should.equal(180);
   });
 
+  it("scan A, A, A, A, A should return 230", function() {
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.total().should.equal(230);
+  });
+
+  it("scan A, A, A, A, A, A should return 260", function() {
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.total().should.equal(260);
+  });
+
+  it("scan A, A, A, B should return 160", function() {
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("B");
+    checkout.total().should.equal(160);
+  });
 
   it("scan A, A, A, B, B should return 175", function() {
     checkout.scan("A");
@@ -74,4 +100,28 @@ describe("Checkout", function() {
     checkout.scan("B");
     checkout.total().should.equal(175);
   });
+
+  it("scan A, A, A, B, B, D should return 190", function() {
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("A");
+    checkout.scan("B");
+    checkout.scan("B");
+    checkout.scan("D");
+    checkout.total().should.equal(190);
+  });
+
+  it("scan D, A, B, A, B, A should return 190", function() {
+    checkout.scan("D");
+    checkout.scan("A");
+    checkout.scan("B");
+    checkout.scan("A");
+    checkout.scan("B");
+    checkout.scan("A");
+    checkout.total().should.equal(190);
+  });
 });
+
+/*
+    assert_equal(190, price("DABABA"))
+*/
