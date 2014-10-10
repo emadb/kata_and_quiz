@@ -1,19 +1,20 @@
+require 'machine_ready'
+
 class CoffeeMachine
-  attr_reader :credit
-  attr_reader :state
+  attr_accessor :state
 
   def initialize
-    @credit = 0
-    @state = MachineReady.new 
+    @state = MachineReady.new(self, 0)
   end
 
   def insert_coin(amount)
-    @credit += amount
+    @state.insert_coin(amount)
+  end
+
+  def credit
+  	@state.credit
   end
 
 end
 
-
-class MachineReady
-end
 

@@ -26,9 +26,15 @@ describe CoffeeMachine do
     expect(machine.credit).to eq(0)
   end  
 
-  it 'initial state should be "ready"' do
+  it 'initial state should be "MachineReady"' do
     machine = CoffeeMachine.new
     expect(machine.state.class).to eq(MachineReady)
   end  
+
+  it 'credit is enough state should "MachieReadyToDeliver"' do
+    machine = CoffeeMachine.new
+    machine.insert_coin(50)
+    expect(machine.state.class).to eq(MachineReadyToDeliver)
+  end
 
 end
