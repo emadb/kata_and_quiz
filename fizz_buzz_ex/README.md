@@ -1,6 +1,6 @@
-BerlinClock
+FizzBuzz 
 ===========
 
-The Berlin Clock kata implementend in Elixir.
+The Fizz Buzz kata implementend in Elixir.
 
-[http://agilekatas.co.uk/katas/berlinclock-kata.html](http://agilekatas.co.uk/katas/berlinclock-kata.html)
+[http://content.codersdojo.org/code-kata-catalogue/fizz-buzz/](http://content.codersdojo.org/code-kata-catalogue/fizz-buzz/)
