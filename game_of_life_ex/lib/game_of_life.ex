@@ -1,9 +1,8 @@
-defmodule GameOfLife do
-  def create_cell(x \\ 0, y \\ 0) do
-    %{alive: true, x: x, y: y}
+defmodule Cell do
+  def create(x \\ 0, y \\ 0) do
+    receive do
+      {sender, :where_are_you} ->
+        send sender, {:position, %{x: x , y: y}}
+    end
   end
-
-  def next_era([cell | _]) do
-     [%{alive: false, x: cell[:x], y: cell[:y]}]
-  end
-end
+end 
