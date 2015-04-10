@@ -12,6 +12,10 @@ defmodule GameOfLifeTest do
     end
   end
 
+  # TODO: invece di chiedere le coordinate, meglio che ogni cella venga notificata della nascita e della
+  # morte di tutte le altre celle (ogni cella che nasce dice a tutti sono nata). Chi riceve, 
+  # se e' un suo vicino ne tiene traccia, altrimenti ignora
+
   # test 'create cell with coordinates should return a live cell in a predefined positions' do
   #   cell = GameOfLife.create_cell(1,2)
   #   assert cell[:alive] == true
