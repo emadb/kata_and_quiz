@@ -1,6 +1,6 @@
-BerlinClock
+GameOfLife
 ===========
 
-The Berlin Clock kata implementend in Elixir.
+The game of life kata
 
-[http://agilekatas.co.uk/katas/berlinclock-kata.html](http://agilekatas.co.uk/katas/berlinclock-kata.html)
+[http://codingdojo.org/cgi-bin/index.pl/index.pl?action=browse&diff=1&id=KataGameOfLife](http://codingdojo.org/cgi-bin/index.pl/index.pl?action=browse&diff=1&id=KataGameOfLife)
