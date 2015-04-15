@@ -1,17 +1,56 @@
 defmodule GameOfLifeTest do
+  import :timer
   use ExUnit.Case
 
-  test 'create cell should return a live cell in position 0,0' do
-    cell = spawn(Cell, :create, [1, 2])
-    message = send cell, {self, :where_are_you} 
-    assert Process.alive?(cell) == true
+
+  def listen(pids) do
     receive do
-      {:position, position} -> 
-        assert position[:x] == 1
-        assert position[:y] == 2
+      {:position, position} ->
+        IO.inspect position
+        broadcast(pids, :cell_position, position)
+        listen(pids)
     end
   end
 
+  test 'Any live cell with 2 live neighbours live' do
+    pids = []
+    pids = pids ++ [spawn(Cell, :create, [1, 2, self()])]
+    pids = pids ++ [spawn(Cell, :create, [1, 1, self()])]
+    pids = pids ++ [spawn(Cell, :create, [1, 3, self()])]
+
+    listen pids
+    IO.puts "test"
+    sleep 20
+    
+    broadcast(pids, :tick)
+    [h | tail] = pids
+    [hh | _] = tail
+    assert Process.alive?(h) == true
+    assert Process.alive?(hh) == true
+  end
+
+  def broadcast(pids, message, args \\ nil) do
+    Enum.each(pids, 
+      fn p -> 
+       send p, {message, args} 
+      end)
+  end
+
+  # test 'create cell should return a live cell in position 0,0' do
+  #   cell = spawn(Cell, :create, [1, 2, self()])
+  #   receive do
+  #     {:position, position} -> 
+  #       assert position[:x] == 1
+  #       assert position[:y] == 2
+  #   end
+  # end
+
+  # test 'a lonely cell will die' do
+  #   cell = spawn(Cell, :create, [1, 2])
+  #   send cell, {self, :tick}
+  #   sleep 1
+  #   assert Process.alive?(cell) == false
+  # end
   # TODO: invece di chiedere le coordinate, meglio che ogni cella venga notificata della nascita e della
   # morte di tutte le altre celle (ogni cella che nasce dice a tutti sono nata). Chi riceve, 
   # se e' un suo vicino ne tiene traccia, altrimenti ignora
