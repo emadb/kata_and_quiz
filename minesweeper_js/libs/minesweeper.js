@@ -4,24 +4,26 @@ module.exports = (function() {
     this.rows = r;
     this.cols = c;
   };
+  function isAStar(row, col, rows){
+    return (rows[row] && rows[row][col] == '*') | 0;
+  }
 
   function countStarNearby(row, col, rows){
 		var count = 0
-      + ((rows[row][col-1] == '*') | 0)
-      + ((rows[row][col+1] == '*') | 0)
-      + ((rows[row-1] && rows[row-1][col-1] == '*') | 0)
-      + ((rows[row-1] && rows[row-1][col] == '*') | 0)
-      + ((rows[row-1] && rows[row-1][col+1] == '*') | 0)
-      + ((rows[row+1] && rows[row+1][col-1] == '*') | 0)
-      + ((rows[row+1] && rows[row+1][col] == '*') | 0)
-      + ((rows[row+1] && rows[row+1][col+1] == '*') | 0);
+      + isAStar(row, col-1, rows)
+      + isAStar(row, col+1, rows)
+      + isAStar(row-1, col-1, rows)
+      + isAStar(row-1, col, rows)
+      + isAStar(row-1, col+1, rows)
+      + isAStar(row+1, col-1, rows)
+      + isAStar(row+1, col, rows)
+      + isAStar(row+1, col+1, rows);
+
     return count;
   }
 
   Minesweeper.prototype.process  = function(input) {
     var rows = input.split("\n").map(function(r){ return r.split("") });
-    // rows -> [[*,.,.], [.,.,.], ...]
-
     var result = [];
 
     rows.forEach(function(row, r){
