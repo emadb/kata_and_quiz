@@ -1,10 +1,37 @@
 const SalesTaxes = function() { }
-const basicSaleTax = 0.10
 
-const taxMap = {
-  'music CD': basicSaleTax,
-  'bottle of perfume': basicSaleTax
-} 
+  function basicTaxedItem(item){
+    const basicSaleTax = 0.10
+
+    const taxMap = {
+    'music CD': basicSaleTax,
+    'bottle of perfume': basicSaleTax
+  } 
+
+  function calculateBasicTax(item){
+    const tax = taxMap[item.type] || 0
+    return item.price * tax
+  } 
+
+  function calculateImportTax(item){
+    const importedTax = item.imported? 0.05 : 0
+    return (item.price * importedTax)
+  }
+
+  return {
+    total : function(){
+      return item.price + this.salesTaxes()
+    },
+    salesTaxes : function(){
+      return calculateBasicTax(item) + calculateImportTax(item)
+    }
+    
+  }
+}
+
+
+
+
 
 function round(num){
   return Math.ceil(num * 100) / 100
@@ -12,15 +39,7 @@ function round(num){
   //return (Math.ceil(num*20 - 0.05)/20).toFixed(2)
 }
 
-function calculateBasicTax(item){
-  const tax = taxMap[item.type] || 0
-  return item.price * tax
-} 
 
-function calculateImportTax(item){
-  const importedTax = item.imported? 0.05 : 0
-  return (item.price * importedTax)
-}
 
 SalesTaxes.prototype.foo = function(){
   return true 
@@ -29,9 +48,9 @@ SalesTaxes.prototype.foo = function(){
 SalesTaxes.prototype.receipt = function(items){
 
   const result = items.reduce((acc, curr) => {
-    const totalTax = calculateBasicTax(curr) + calculateImportTax(curr)
-    acc.total = acc.total + curr.price + totalTax
-    acc.salesTaxes = acc.salesTaxes + totalTax
+    const trasformedItem = basicTaxedItem(curr)
+    acc.total = acc.total + trasformedItem.total() 
+    acc.salesTaxes = acc.salesTaxes + trasformedItem.salesTaxes()
     return acc
   }, {
     total: 0, 
