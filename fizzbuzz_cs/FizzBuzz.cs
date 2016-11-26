@@ -4,19 +4,25 @@ using System.Linq;
 
 public class FizzBuzz
 {
-    private IList<Func<int, string>> _funcs;
+    private IDictionary<int, string> _nums;
 
     public FizzBuzz()
     {
-      _funcs = new List<Func<int, string>>(){
-        {n => n % 3 == 0 ? "Fizz":""},
-        {n => n % 5 == 0 ? "Buzz":""}
+      _nums = new Dictionary<int, string>(){
+        {3, "Fizz"},
+        {5, "Buzz"}
       };
     }
 
     public string Parse(int num)
     {
-      var partial = _funcs.Aggregate("", (last, f) => last + f(num));
+      var partial = _nums.Aggregate("", (last, n) => {
+        if (num % n.Key == 0){
+          return last + n.Value;
+        }  
+        return last;
+      });
+      
       if(String.IsNullOrEmpty(partial)){
         return num.ToString();
       }
