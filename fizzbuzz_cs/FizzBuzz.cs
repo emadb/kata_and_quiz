@@ -16,13 +16,7 @@ public class FizzBuzz
 
     public string Parse(int num)
     {
-      var partial = _nums.Aggregate("", (last, n) => {
-        return (num % n.Key == 0)? last + n.Value: last;
-      });
-
-      if(String.IsNullOrEmpty(partial)){
-        return num.ToString();
-      }
-      return partial;
+      var partial = _nums.Aggregate((string)null, (last, n) => (num % n.Key == 0)? last + n.Value: last);
+      return partial ?? num.ToString();
     }
 }
