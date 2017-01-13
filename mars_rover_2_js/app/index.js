@@ -1,3 +1,7 @@
+// TODO
+// - Try to define inc and dec function to increment/decrement the positions
+// - Try to use lens to get x and y value (used with inc and dec functions above)
+
 function rover(x, y, d, cmds = []){
   const current = { x, y, direction: directions.indexOf(d) }
   const next = cmds.reduce((acc, cmd) => executeCommand(acc, cmd), current)
@@ -5,7 +9,7 @@ function rover(x, y, d, cmds = []){
 }
 
 function prepareForOutput(state){
-  return Object.assign({}, state, {direction: directions.slice(state.direction % 4)[0]})
+  return Object.assign({}, state, { direction: directions.slice(state.direction % 4)[0] })
 }
 
 function setterLens(prop) {
@@ -50,7 +54,7 @@ const commands = {
   'r': state => setDirection(state)(s => s.direction + 1),
 }
 
-function executeCommand(current, cmd){
+function executeCommand(current, cmd) {
   return Object.assign({}, current, commands[cmd](current))
 }
 
