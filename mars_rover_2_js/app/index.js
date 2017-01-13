@@ -5,19 +5,46 @@ function rover(x, y, d, cmds = []){
   return next
 }
 
-function setter(prop, obj){
-  return function(fn) {
-    obj[prop] = fn(obj)
+function setterLens(prop) {
+  return function (obj) {
+    return function(fn) {
+      obj[prop] = fn(obj)
+    }
   }
 }
 
+const setY = setterLens('y')
+const setX = setterLens('x')
+const setDirection = setterLens('direction')
+
 const directions = ['N', 'W', 'S', 'E']
 
+const forwards = [
+  s => s.y + 1,
+  s => s.x + 1,
+  s => s.y - 1,
+  s => s.x - 1
+]
+
+const backwards = [
+  s => s.y - 1,
+  s => s.x - 1,
+  s => s.y + 1,
+  s => s.x + 1
+]
+
+const setter = [
+  setY,
+  setX,
+  setY,
+  setX
+]
+
 const commands = {
-  'f': state => setter('y', state)(s => s.y + 1),
-  'b': state => setter('y', state)(s => s.y - 1),
-  'l': state => setter('direction', state)(s => s.direction - 1),
-  'r': state => setter('direction', state)(s => s.direction + 1),
+  'f': state => setter[state.direction](state)(forwards[state.direction]),
+  'b': state => setter[state.direction](state)(backwards[state.direction]),
+  'l': state => setDirection(state)(s => s.direction - 1),
+  'r': state => setDirection(state)(s => s.direction + 1),
 }
 
 function executeCommand(current, cmd){
