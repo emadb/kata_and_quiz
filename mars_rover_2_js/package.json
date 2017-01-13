@@ -1,0 +1,16 @@
+{
+  "name": "mars_rover_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/**/*.js"
+  },
+  "keywords": [],
+  "author": "Emanuele DelBono <emanuele@codiceplastico.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "3.5.0",
+    "mocha": "3.2.0"
+  }
+}
