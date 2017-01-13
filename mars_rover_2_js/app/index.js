@@ -20,24 +20,47 @@ function setterLens(prop) {
   }
 }
 
+function getterLens(prop) {
+  return function (obj) {
+    return obj[prop]
+  }
+}
+
+function inc(getValue){
+  return function(state){
+    return getValue(state) + 1
+  }
+}
+
+function dec(getValue){
+  return function(state){
+    return getValue(state) - 1
+  }
+}
+
 const setY = setterLens('y')
 const setX = setterLens('x')
 const setDirection = setterLens('direction')
 
+const incY = s => inc(getterLens('y'))(s)
+const incX = s => inc(getterLens('x'))(s)
+const decY = s => dec(getterLens('y'))(s)
+const decX = s => dec(getterLens('x'))(s)
+
 const directions = ['N', 'W', 'S', 'E']
 
 const forwards = [
-  s => s.y + 1,
-  s => s.x + 1,
-  s => s.y - 1,
-  s => s.x - 1
+  s => incY(s),
+  s => incX(s),
+  s => decY(s),
+  s => decX(s),
 ]
 
 const backwards = [
-  s => s.y - 1,
-  s => s.x - 1,
-  s => s.y + 1,
-  s => s.x + 1
+  s => decY(s),
+  s => decX(s),
+  s => incY(s),
+  s => incX(s),
 ]
 
 const setter = [
