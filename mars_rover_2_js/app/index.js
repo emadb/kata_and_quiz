@@ -1,8 +1,11 @@
 function rover(x, y, d, cmds = []){
   const current = { x, y, direction: directions.indexOf(d) }
   const next = cmds.reduce((acc, cmd) => executeCommand(acc, cmd), current)
-  next.direction = directions.slice(next.direction % 4)[0]
-  return next
+  return prepareForOutput(next)
+}
+
+function prepareForOutput(state){
+  return Object.assign({}, state, {direction: directions.slice(state.direction % 4)[0]})
 }
 
 function setterLens(prop) {
