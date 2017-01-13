@@ -17,7 +17,7 @@ defmodule World do
     List.delete(cells, cell)
   end
 
-  defp next_cell(cell, 2, cells) do
+  defp next_cell(cell, n, cells) when n >= 2 do
     cells
   end
 
@@ -31,8 +31,8 @@ end
 
 # 012345678
 # 1
-# 2
-# 3   X
+# 2   o 
+# 3   Xo
 # 4   o  
 # 5
 # 6

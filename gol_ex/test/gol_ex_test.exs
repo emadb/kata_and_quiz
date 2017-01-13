@@ -14,12 +14,32 @@ defmodule GolExTest do
     assert Enum.empty? new_world
   end
 
-
   test "Any live cell with two live neighbours lives on to the next generation." do
     c1 = [3, 4]
     c2 = [4, 4]
     c3 = [2, 4]
     new_world = World.tick [c1, c2, c3]
     [new_c1 | _] = new_world
+  end
+
+  test "Any live cell with three live neighbours lives on to the next generation." do
+    c1 = [3, 4]
+    c2 = [4, 4]
+    c3 = [2, 4]
+    c4 = [3, 5]
+    new_world = World.tick [c1, c2, c3, c4]
+    [new_c1 | _] = new_world
+  end
+
+  test "Any live cell with more than three live neighbours dies" do
+    c1 = [3, 4]
+    c2 = [4, 4]
+    c3 = [2, 4]
+    c4 = [3, 5]
+    c4 = [3, 5]
+    c4 = [2, 5]
+    new_world = World.tick [c1, c2, c3, c4, c5]
+    [new_c1 | _] = new_world
+    IO.inspect new_c1
   end
 end
