@@ -15,7 +15,7 @@ function prepareForOutput(state){
 function setterLens(prop) {
   return function (obj) {
     return function(fn) {
-      obj[prop] = fn(obj)
+      return Object.assign({}, obj, {[prop]: fn(obj)})
     }
   }
 }
