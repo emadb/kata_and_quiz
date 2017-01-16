@@ -1,6 +1,9 @@
-// TODO
-// - Try to define inc and dec function to increment/decrement the positions
-// - Try to use lens to get x and y value (used with inc and dec functions above)
+/* 
+TODO
+ - Try to define inc and dec function to increment/decrement the positions
+ - Try to use lens to get x and y value (used with inc and dec functions above)
+ - Different approach. Create a different insance based on direction
+ */
 
 function rover(x, y, d, cmds = []){
   const current = { x, y, direction: directions.indexOf(d) }
