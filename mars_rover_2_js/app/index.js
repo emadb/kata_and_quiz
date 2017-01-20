@@ -1,7 +1,22 @@
+//* with fold
+// function rover(x, y, d, cmds = []){
+//   const current = { x, y: y, direction: d }
+//   const final = cmds.reduce((acc, c)  => applyCommand(acc, c), current)
+//   return final
+// }
+
+//* with recursion
 function rover(x, y, d, cmds = []){
   const current = { x, y: y, direction: d }
-  const final = cmds.reduce((acc, c)  => applyCommand(acc, c), current)
-  return final
+  return internalRover(current, cmds)
+}
+
+function internalRover(current, [head, ...tail]){
+  if (!head) {
+    return current
+  }
+  const next = applyCommand(current, head)
+  return internalRover(next, tail)
 }
 
 const roverN = {
