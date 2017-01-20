@@ -18,6 +18,12 @@ function internalRover(current, [head, ...tail]){
   const next = applyCommand(current, head)
   return internalRover(next, tail)
 }
+//
+
+function applyCommand(current, cmd){
+  const delta = rovers[current.direction][cmd](current)
+  return Object.assign({}, current, delta)
+}
 
 const roverN = {
   'f': current => ({ y: current.y + 1 }),
@@ -52,11 +58,6 @@ const rovers = {
   'E': roverE,
   'S': roverS,
   'W': roverW
-}
-
-function applyCommand(current, cmd){
-  const delta = rovers[current.direction][cmd](current)
-  return Object.assign({}, current, delta)
 }
 
 module.exports = rover
