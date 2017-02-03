@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MarsRover.fs" />
+    <Compile Include="MarsRoverTests.fs" />
     <None Include="App.config" />
   </ItemGroup>
   <PropertyGroup>
