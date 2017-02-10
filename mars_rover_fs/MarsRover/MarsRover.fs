@@ -20,31 +20,31 @@ type Position = {
 
 let moveN position command =
     match command with
-    | Forward ->  { position with Y = position.Y + 1}
-    | Backward -> { position with Y = position.Y - 1}
-    | Left -> { position with Direction = W}
-    | Right -> { position with Direction = E}
+    | Forward ->  { position with Y = position.Y + 1 }
+    | Backward -> { position with Y = position.Y - 1 }
+    | Left -> { position with Direction = W }
+    | Right -> { position with Direction = E }
 
 let moveE position command =
     match command with
-    | Forward ->  { position with X = position.X + 1}
-    | Backward -> { position with X = position.X - 1}
-    | Left -> { position with Direction = N}
-    | Right -> { position with Direction = S}
+    | Forward ->  { position with X = position.X + 1 }
+    | Backward -> { position with X = position.X - 1 }
+    | Left -> { position with Direction = N }
+    | Right -> { position with Direction = S }
 
 let moveS position command =
     match command with
-    | Forward ->  { position with Y = position.Y - 1}
-    | Backward -> { position with Y = position.Y + 1}
-    | Left -> { position with Direction = E}
-    | Right -> { position with Direction = W}
+    | Forward ->  { position with Y = position.Y - 1 }
+    | Backward -> { position with Y = position.Y + 1 }
+    | Left -> { position with Direction = E }
+    | Right -> { position with Direction = W }
 
 let moveW position command =
     match command with
-    | Forward ->  { position with X = position.X - 1}
-    | Backward -> { position with X = position.X + 1}
-    | Left -> { position with Direction = S}
-    | Right -> { position with Direction = N}
+    | Forward ->  { position with X = position.X - 1 }
+    | Backward -> { position with X = position.X + 1 }
+    | Left -> { position with Direction = S }
+    | Right -> { position with Direction = N }
     
 let moveSingle position command = 
     match position.Direction, command with
