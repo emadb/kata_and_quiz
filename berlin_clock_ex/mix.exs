@@ -4,7 +4,7 @@ defmodule BerlinClock.Mixfile do
   def project do
     [app: :berlin_clock,
      version: "0.0.1",
-     elixir: "~> 0.14.2",
+     elixir: "~> 1.4.2",
      deps: deps]
   end
 
