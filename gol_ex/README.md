@@ -1,4 +1,0 @@
-GolEx
-=====
-
-** TODO: Add description **

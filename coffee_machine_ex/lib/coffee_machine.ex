@@ -15,7 +15,7 @@ defmodule CoffeeMachine do
   end
 
   def get_coffee() do
-    GenServer.call(Registry.lookup(:makers_registry, "coffee_maker"), {:get_coffee})
+    GenServer.call(@name, {:get_coffee})
   end
 
   def cancel() do
@@ -36,7 +36,9 @@ defmodule CoffeeMachine do
   end
 
   def handle_call({:get_coffee}, _from, credit) do
-    if credit >= 30 do
+    via_tuple = {:via, Registry, {:makers_registry, "coffee_maker"}}
+    {result, rest} = GenServer.call(via_tuple, {:get_coffee, credit})
+    if result == :coffee do
       {:reply, {:coffee, credit - 30}, credit - 30}
     else
       {:reply, {:nothing, credit}, credit}
