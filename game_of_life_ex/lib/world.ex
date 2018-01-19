@@ -3,7 +3,7 @@ defmodule GameOfLife.World do
   @name WORLD
 
   def start_link do
-    GenServer.start_link(__MODULE__, %{cells: []}, name: @name)
+    GenServer.start_link(__MODULE__, [], name: @name)
   end
 
   def create_cell(x, y) do
@@ -25,7 +25,7 @@ defmodule GameOfLife.World do
   def handle_call({:create_cell, x, y}, _from, state) do
     case GameOfLife.Cell.start_link("#{x}_#{y}", x, y) do
       {:ok, pid} -> 
-        {:reply, "#{x}_#{y}", %{cells: state[:cells] ++ [pid]}}
+        {:reply, "#{x}_#{y}", state ++ [pid]}
       {:error, {:already_started, pid}} -> 
         {:reply, {:already_alive, pid}, state}
     end
@@ -43,6 +43,6 @@ defmodule GameOfLife.World do
   end
 
   def handle_call({:get_live_cells}, _from, state) do
-    {:reply, state[:cells], state}
+    {:reply, state, state}
   end
-end
+end 
