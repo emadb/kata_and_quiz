@@ -28,3 +28,4 @@ UpgradeLog*.*
 _UpgradeReport_Files
 _build
 .elixir_lasdasas
+.elixir_ls
