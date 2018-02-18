@@ -13,7 +13,7 @@ defmodule StringCalculatorExTest do
   test "`2` should return 2" do
     assert StringCalculatorEx.add("2") == 2
   end
-  
+
   test "`1,2` should return 3" do
     assert StringCalculatorEx.add("1,2") == 3
   end
@@ -33,5 +33,4 @@ defmodule StringCalculatorExTest do
   test "set delimiter" do
     assert StringCalculatorEx.add("//;\n1;2") == 3
   end
-
 end
