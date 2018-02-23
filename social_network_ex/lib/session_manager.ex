@@ -14,5 +14,11 @@ defmodule SessionManager do
   def login(username) do
     DynamicSupervisor.start_child(__MODULE__, {User, username})
   end
+  
+  @spec logout(String.t) :: any()
+  def logout(user) do
+    pid = SocialNetworkEx.get_pid(user)
+    DynamicSupervisor.terminate_child(__MODULE__, pid)
+  end
 end
 
