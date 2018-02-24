@@ -67,7 +67,6 @@ defmodule User do
       _ -> nil
     end
   end
-  
 
   def handle_call({:post_message, user, message}, _from, state) do
     msg = %Message{date: :calendar.universal_time(), text: message, author: state.name}

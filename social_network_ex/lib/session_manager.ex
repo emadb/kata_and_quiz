@@ -9,7 +9,6 @@ defmodule SessionManager do
     DynamicSupervisor.init(strategy: :one_for_one)
   end
 
-
   @spec login(String.t) :: any()
   def login(username) do
     DynamicSupervisor.start_child(__MODULE__, {User, username})
