@@ -1,3 +1,7 @@
+defmodule Key do
+  defstruct credit: 0, inserted: false
+end
+
 defmodule CoffeeMachine do
   use GenServer
 

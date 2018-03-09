@@ -64,4 +64,10 @@ defmodule CoffeeMachineExTest do
       assert state.credit == 0
     end
   end
+
+  describe " When the credit as reached 30cents I can make a coffee. If the credit is not enough the machine should display a message with the price of the coffee (30cents)" do
+    test "enough credit to buy a coffee" do
+      {:reply, {:ok, %Coffee{}}, state} = CoffeeMachine.handle_call({:get_coffee}, nil, %CoffeeMachine{credit: 30})
+    end
+  end
 end
