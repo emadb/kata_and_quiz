@@ -16,6 +16,14 @@ defmodule SocialNetwork do
   UserSession.timeline(username)
  end
 
+ def follow(username, who_to_follow) do
+  UserSession.follow(username, who_to_follow)
+ end
+
+ def following(username) do
+  UserSession.following(username)
+ end
+
 end
 
 defmodule Post do
