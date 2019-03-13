@@ -5,7 +5,8 @@ defmodule SocialNetwork.Application do
     # List all child processes to be supervised
     children = [
       {Registry, [keys: :unique, name: SessionRegistry]},
-      {SessionSupervisor, []}
+      {SessionSupervisor, []},
+      {Broker, []}
     ]
 
     opts = [strategy: :one_for_one, name: SocialNetwork.Supervisor]

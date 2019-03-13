@@ -24,6 +24,10 @@ defmodule SocialNetwork do
   UserSession.following(username)
  end
 
+ def followers(username) do
+  UserSession.followers(username)
+ end
+
 end
 
 defmodule Post do
