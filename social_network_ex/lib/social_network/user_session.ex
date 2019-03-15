@@ -44,8 +44,9 @@ defmodule UserSession do
   end
 
   def handle_call({:post, message}, _from, state) do
-    Broker.publish(message, state.name)
-    {:reply, :ok, %UserSession{state | posts: state.posts ++ [%Post{date: DateTime.utc_now(), message: message}]}}
+    post = %Post{date: DateTime.utc_now(), message: message, user: state.name}
+    Broker.publish({:new_message, post}, state.name)
+    {:reply, :ok, %UserSession{state | posts: state.posts ++ [post]}}
   end
 
   def handle_call({:timeline}, _from, state) do
@@ -70,12 +71,11 @@ defmodule UserSession do
   end
 
   def handle_call({:pin}, _from, state) do
-    IO.inspect state, label: "PINGING"
     {:reply, {:ok, "pong"}, state}
   end
 
-  def handle_info(message, state) do
-    new_state = %UserSession{state | posts: state.posts ++ [%Post{date: DateTime.utc_now(), message: message}]}
+  def handle_info({:new_message, post}, state) do
+    new_state = %UserSession{state | posts: state.posts ++ post}
     {:noreply, new_state}
   end
 end

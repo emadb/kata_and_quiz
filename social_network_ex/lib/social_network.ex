@@ -31,5 +31,5 @@ defmodule SocialNetwork do
 end
 
 defmodule Post do
-  defstruct date: nil , message: nil
+  defstruct date: nil , message: nil, user: nil
 end
