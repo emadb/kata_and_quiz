@@ -14,8 +14,8 @@ defmodule BrokerTest do
   end
 
   test "two subscribers receive a message" do
-    task1 = Task.async(fn -> receive do message -> message end end)
-    task2 = Task.async(fn -> receive do message -> message end end)
+    task1 = Task.async(&echo/0)
+    task2 = Task.async(&echo/0)
 
     Broker.subscribe(task1.pid, "topic1")
     Broker.subscribe(task2.pid, "topic1")
@@ -30,8 +30,8 @@ defmodule BrokerTest do
   end
 
   test "two subscribers on different topics only one receive a message" do
-    task1 = Task.async(fn -> receive do message -> message end end)
-    task2 = Task.async(fn -> receive do message -> message end end)
+    task1 = Task.async(&echo/0)
+    task2 = Task.async(&echo/0)
 
     Broker.subscribe(task1.pid, "topic1")
     Broker.subscribe(task2.pid, "topic2")
@@ -46,7 +46,10 @@ defmodule BrokerTest do
     assert res2 == "world!"
   end
 
-
-
+  defp echo() do
+    receive do
+      message -> message
+    end
+  end
 
 end

@@ -75,8 +75,7 @@ defmodule UserSession do
   end
 
   def handle_info({:new_message, post}, state) do
-    new_state = %UserSession{state | posts: state.posts ++ [post]}
-    {:noreply, new_state}
+    {:noreply, %UserSession{state | posts: state.posts ++ [post]}}
   end
 end
 
