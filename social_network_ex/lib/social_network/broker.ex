@@ -10,24 +10,24 @@ defmodule Broker do
   end
 
   def subscribe(pid, topic) do
-    GenServer.call(__MODULE__, {:subscribe, pid, topic})
+    GenServer.cast(__MODULE__, {:subscribe, pid, topic})
   end
 
   def publish(message, topic) do
-    GenServer.call(__MODULE__, {:publish, message, topic})
+    GenServer.cast(__MODULE__, {:publish, message, topic})
   end
 
-  def handle_call({:subscribe, pid, topic}, _from, state) do
-    {:reply, :ok, state ++ [{pid, topic}]}
+  def handle_cast({:subscribe, pid, topic},  state) do
+    {:noreply, state ++ [{pid, topic}]}
   end
 
-  def handle_call({:publish, message, topic}, _from, state) do
+  def handle_cast({:publish, message, topic}, state) do
 
     state
       |> Enum.filter(fn {_p, t} -> t == topic end)
       |> Enum.map(fn {p, _t} -> send(p, message) end)
 
-    {:reply, :ok, state}
+    {:noreply, state}
   end
 end
 
