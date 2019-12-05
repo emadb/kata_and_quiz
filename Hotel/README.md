@@ -19,11 +19,11 @@ Each room can be of different type:
 - Suite (2x actual price) (bigger with more facilities)
 
 For each room there is the _sea front_ option that increase the price of 15%.
-The hotels has (half of them are sea front)
-- 10 rooms of type 1
-- 10 rooms of type 2
-- 4 rooms of type 3
 
+The hotel has (half of them are sea front)
+- 12 rooms of type 1 (6 standard + 6 superior)
+- 12 rooms of type 2 (4 standard + 4 superior + 2 suite)
+- 6 rooms of type 3 (2 standard + 2 superior + 2 suite)
 
 ## 2)  Online reservation process
 Once the customer has chose their preferred option they can proceed with the real reservation.

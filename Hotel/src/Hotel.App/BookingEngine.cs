@@ -14,7 +14,7 @@ namespace Hotel.App
 
         public IEnumerable<Room> CheckAvailabilty(DateTime from, DateTime to, int adults, int children)
         {
-            throw new NotImplementedException();
+            return new List<Room>();
         }
     }
 }
