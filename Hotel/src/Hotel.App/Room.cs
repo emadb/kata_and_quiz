@@ -49,7 +49,6 @@ namespace Hotel.App
 
         public bool Contains(DateTime date)
         {
-            Console.WriteLine(to);
             return from <= date && to >= date;
         }
     }
