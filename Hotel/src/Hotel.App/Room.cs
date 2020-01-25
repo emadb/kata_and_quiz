@@ -22,8 +22,12 @@ namespace Hotel.App
 
         public bool IsReserved(DateTime date)
         {
-            
-            return _reservations.Any(r => r.Contains(date));
+            return IsReserved(date, date);
+        }
+
+        public bool IsReserved(DateTime from, DateTime to)
+        {
+            return _reservations.Any(r => r.IsOverlapped(from, to));
         }
     }
 
@@ -50,6 +54,11 @@ namespace Hotel.App
         public bool Contains(DateTime date)
         {
             return from <= date && to >= date;
+        }
+
+        public bool IsOverlapped(DateTime from, DateTime to)
+        {
+            return this.from < to && from < this.to;
         }
     }
 }

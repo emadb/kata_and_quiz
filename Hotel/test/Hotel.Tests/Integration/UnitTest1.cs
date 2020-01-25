@@ -50,7 +50,7 @@ namespace Hotel.Tests
             
             IEnumerable<Room> rooms = be.CheckAvailabilty(from, to, adults, children);
 
-            Assert.True(rooms.Count() == 0);
+            Assert.True(rooms.Count() == 1);
         }
     }
 }
