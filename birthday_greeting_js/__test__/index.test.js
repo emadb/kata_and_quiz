@@ -8,11 +8,7 @@ describe('Birthday greeting', () => {
   test('Should return the employee list', () => {
 
     const reader = {
-      read: (_fileName) => {
-        return [
-          ['last_name', 'first_name', 'date_of_birth', 'email'],
-          ['Doe', 'John', '1982-10-08', 'john.doe@foobar.com']
-        ]}
+      read: (_fileName) => `last_name, first_name, date_of_birth, email\nDoe, John, 1982-10-08, john.doe@foobar.com`
     }
 
     const repo = new EmployeeRepository(reader)

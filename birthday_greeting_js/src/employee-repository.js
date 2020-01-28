@@ -5,14 +5,15 @@ class EmployeeRepository {
   }
 
   loadAll(){ 
-    const lines = this._reader.read()
+    const content = this._reader.read()
+    const lines = content.split('\n')
+
     const employees = lines.slice(1).map(l => {
-      return employee.parse(l)
+      return employee.parse(l.split(',').map(r => r.trim()))
     })
     return employees
   }
 }
-
 
 const employee = {
   parse(arr) {
