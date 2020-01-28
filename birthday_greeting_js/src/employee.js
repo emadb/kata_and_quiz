@@ -12,12 +12,7 @@ class Employee{
   }
 
   static parse(arr) {
-    return {
-      last_name: arr[0],
-      first_name: arr[1], 
-      date_of_birth: new Date(`${arr[2]}T00:00:00.000Z`),
-      email: arr[3]
-    }
+    return new Employee(arr[0], arr[1], new Date(`${arr[2]}T00:00:00.000Z`), arr[3])
   }
 }
 
