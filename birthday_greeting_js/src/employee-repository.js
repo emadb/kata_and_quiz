@@ -4,8 +4,8 @@ class EmployeeRepository {
     this._reader = reader
   }
 
-  loadAll(){ 
-    const content = this._reader.read()
+  async loadAll(){ 
+    const content = await this._reader.read()
     const lines = content.split('\n')
 
     const employees = lines.slice(1).map(l => {

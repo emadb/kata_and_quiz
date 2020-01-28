@@ -5,14 +5,14 @@ describe('Birthday greeting', () => {
     expect(true).toBe(true)
   })
 
-  test('Should return the employee list', () => {
+  test('Should return the employee list', async () => {
 
     const reader = {
-      read: (_fileName) => `last_name, first_name, date_of_birth, email\nDoe, John, 1982-10-08, john.doe@foobar.com`
+      read: (_fileName) => Promise.resolve(`last_name, first_name, date_of_birth, email\nDoe, John, 1982-10-08, john.doe@foobar.com`)
     }
 
     const repo = new EmployeeRepository(reader)
-    const employees = repo.loadAll()
+    const employees = await repo.loadAll()
 
     expect(employees.length).toBe(1)
     expect(employees[0].first_name).toBe('John')
