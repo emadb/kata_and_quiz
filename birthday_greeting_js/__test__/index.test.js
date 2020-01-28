@@ -1,7 +1,7 @@
 const EmployeeRepository = require('../src/employee-repository')
 const Employee = require('../src/employee')
 const GreetingMailer = require('../src/greeting-mailer')
-const main = require('../src/main')
+const runner = require('../src/runner')
 
 describe('Birthday greeting', () => {
   test('it is true', () => {
@@ -22,7 +22,7 @@ describe('Birthday greeting', () => {
       callCount++
     })
 
-    await main('data.csv', new Date('2020-04-09T00:00:00.000Z'), new EmployeeRepository(reader), new GreetingMailer({send: smtpFn}))
+    await runner('data.csv', new Date('2020-04-09T00:00:00.000Z'), new EmployeeRepository(reader), new GreetingMailer({send: smtpFn}))
 
     expect(callCount).toBe(2)  
   })

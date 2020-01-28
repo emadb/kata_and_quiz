@@ -1,5 +1,5 @@
 const fs = require('fs')
-const main = require('./src/main')
+const runner = require('./src/runner')
 const EmployeeRepository = require('./src/employee-repository')
 const GreetingMailer = require('./src/greeting-mailer')
 const {promisify} = require('util')
@@ -36,4 +36,4 @@ const smtp = {
   }
 }
 
-main('./data.csv', new Date('2020-04-09T00:00:00.000Z'), new EmployeeRepository(fsReader), new GreetingMailer(smtp))
+runner('./data.csv', new Date('2020-04-09T00:00:00.000Z'), new EmployeeRepository(fsReader), new GreetingMailer(smtp))
