@@ -1,28 +1,10 @@
 const fs = require('fs')
 const Employee = require('./employee')
 
-
-const fsReader = {
-  read(fileName) {
-    return new Promise((resolve, reject) => {
-      fs.readFile(fileName, 'utf8', (err, data) => {
-        if (err){
-          return reject(err)
-        }
-        resolve(data)
-      })
-    })
-  }
-}
-
 class EmployeeRepository {
 
   constructor(reader) {
-    if (!reader){
-      this._reader = fsReader
-    } else {
-      this._reader = reader
-    }
+    this._reader = reader
   }
 
   async loadAll(fileName){ 

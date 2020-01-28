@@ -8,6 +8,26 @@ describe('Birthday greeting', () => {
     expect(true).toBe(true)
   })
 
+  test('Acceptance test', async () => {
+    const reader = {
+      read: (_fileName) => Promise.resolve(
+        `last_name, first_name, date_of_birth, email
+        Doe, John, 1982-04-09, john.doe@foobar.com
+        Ann, Mary, 1975-09-11, mary.ann@foobar.com
+        Ema, Db, 1973-04-09, ema@codiceplastico.com`)
+    }
+
+    let callCount = 0
+    const smtpFn = jest.fn().mockImplementation((to, subject, body) => {
+      callCount++
+    })
+
+    await main('data.csv', new Date('2020-04-09T00:00:00.000Z'), new EmployeeRepository(reader), new GreetingMailer({send: smtpFn}))
+
+    expect(callCount).toBe(2)  
+  })
+
+
   test('Should return the employee list', async () => {
 
     const reader = {
@@ -60,6 +80,7 @@ describe('Birthday greeting', () => {
       mailSubject = subject
       mailBody = body
       isCalled = true
+      return Promise.resolve()
     })
     
     const greet = new GreetingMailer({send: smtpFn})
@@ -71,28 +92,4 @@ describe('Birthday greeting', () => {
     expect(mailBody).toBe('Happy birthday, dear John!')
 
   })
-
-  test('Acceptance test', (done) => {
-    const reader = {
-      read: (_fileName) => Promise.resolve(
-        `last_name, first_name, date_of_birth, email
-        Doe, John, 1982-04-09, john.doe@foobar.com
-        Ann, Mary, 1975-09-11, mary.ann@foobar.com
-        Ema, Db, 1973-04-09, ema@codiceplastico.com`)
-    }
-
-    let callCount = 0
-    const smtpFn = jest.fn().mockImplementation((to, subject, body) => {
-      callCount++
-    })
-
-    main('data.csv', new Date('2020-04-09T00:00:00.000Z'), new EmployeeRepository(reader), new GreetingMailer({send: smtpFn}))
-
-    setTimeout(() => {
-      expect(callCount).toBe(2)
-      done()
-    })
-    
-  })
-
 })

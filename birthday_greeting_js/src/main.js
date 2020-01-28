@@ -2,13 +2,8 @@
 const main = async (fileName, today, repository, mailer) => {
 
   const employees = await repository.loadAll(fileName)
-  
-  employees.forEach(e => {
-    if (e.isBirthday(today)) {
-      mailer.send(e)
-    }
-  });
-
+  return Promise.all(employees.filter(e => e.isBirthday(today)).map(e => mailer.send(e)))
+      
 }
 
 module.exports = main

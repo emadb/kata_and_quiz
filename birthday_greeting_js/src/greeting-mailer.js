@@ -6,9 +6,9 @@ class GreetingMailer {
     this.smtp = smtp
   }
 
-  send(employee) {  
+  async send(employee) {  
     const body = `Happy birthday, dear ${employee.first_name}!`
-    this.smtp.send(employee.email, 'Happy birthday!', body)
+    return this.smtp.send(employee.email, 'Happy birthday!', body)
   }
 }
 
